@@ -1,6 +1,6 @@
 version: "3"
 services:
-  web:
+  client:
     volumes:
       - .:/srv/rescue-client
     build: .
@@ -9,6 +9,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - mynetwork
+      - rescue-api_mynetwork
 networks:
-  mynetwork:
+  rescue-api_mynetwork:
+    external: true
