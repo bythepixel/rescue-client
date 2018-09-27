@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    volumes:
+      - .:/srv/rescue-client
+    build: .
+    image: rescue-client-image
+    container_name: rescue-client-container
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
