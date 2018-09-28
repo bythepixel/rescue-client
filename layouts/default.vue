@@ -48,6 +48,36 @@
 </template>
 
 <script>
+import Dexie from 'dexie'
+
+var db = new Dexie('Rescue')
+db.version(1).stores({
+  pets: 'name,breed,description,age,birth,weight,fee',
+})
+
+db.pets
+  .put({
+    name: 'Yoshi',
+    species: 'Dog',
+    breed: 'Great Dane',
+    description: 'Just the best, except when she eats other dogs',
+    age: '8',
+    birth: 'Unknown',
+    weight: '100lbs',
+    fee: 100000,
+  })
+  .then(function() {
+    return db.pets.get('Yoshi')
+  })
+  .then(function(pet) {
+    console.log(pet.name + ' is an awesome ' + pet.breed)
+  })
+  .catch(function(error) {
+    alert('Ooops: ' + error)
+  })
+
+console.log(db)
+
 export default {
   data() {
     return {
